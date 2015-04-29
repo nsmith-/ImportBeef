@@ -6,8 +6,8 @@
 /run/verbose 2
 #
 /testem/det/setNbOfAbsor  1
-/testem/det/setAbsor 1 Water  3 cm
-/testem/det/setSizeYZ 3 cm
+/testem/det/setAbsor 1 Water  10 cm
+/testem/det/setSizeYZ 10 cm
 #
 /testem/phys/addPhysics  local	# em physics
 #
@@ -16,15 +16,20 @@
 /testem/phys/setCuts 100 um
 #
 /gun/particle e-
-/gun/energy 4 MeV
+/gun/energy 10 MeV
 #
-/analysis/setFileName water_100um
-/analysis/h1/set 1 120 0.  24. mm		#edep profile
-/analysis/h1/set 3 100 0.  24. mm		#track length primary
-/analysis/h1/set 4 100 0.  2.  mm		#step length primary
-/analysis/h1/set 5 100 0.  20. mm		#proj range
-/analysis/h1/set 6 100 0.  24. mm		#track length secondaries
+/analysis/setFileName water
+/analysis/h1/set 1 100 0.  100. mm  # "Edep (MeV/mm) along absorber",
+                                    # "total Energy deposited in absorber",
+/analysis/h1/set 3 100 0.  24. mm   # "true track length of the primary particle",
+/analysis/h1/set 4 100 0.  2.  mm   # "true step size of the primary particle",
+/analysis/h1/set 5 100 0.  20. mm   # "projected range of the primary particle",
+/analysis/h1/set 6 100 0.  24. mm	  # "true track length of charged secondaries",
+                                    # "true step size of charged secondaries",
+                                    # "Edep (MeV.cm2/g) along x/r0",
+/analysis/h1/set 9 100 0.  100. mm  # "Edep (MeV/mm) perp. to beam"
 #
 /run/printProgress 10000
 #
 /run/beamOn 100000
+
