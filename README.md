@@ -1,5 +1,7 @@
+```bash
 . environment.sh
 mkdir build && cd build
 cmake ..
 make
-./TestEm11 water.mac
+./runGeant water.mac
+```
