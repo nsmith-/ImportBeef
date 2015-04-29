@@ -73,6 +73,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
  G4ThreeVector P1 = prePoint ->GetPosition();
  G4ThreeVector P2 = postPoint->GetPosition();
  G4ThreeVector point = P1 + G4UniformRand()*(P2 - P1);
+
+ analysisManager->FillNtupleFColumn(0, point.x());
+ analysisManager->FillNtupleFColumn(1, point.y());
+ analysisManager->FillNtupleFColumn(2, point.z());
+ analysisManager->FillNtupleFColumn(3, edep);
+ analysisManager->AddNtupleRow();
+
  G4double x = point.x();
  G4double r = sqrt(pow(point.y(),2)+pow(point.z(),2));
  G4double xshifted = x + 0.5*fDetector->GetAbsorSizeX();  

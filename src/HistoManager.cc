@@ -92,4 +92,11 @@ void HistoManager::Book()
     G4int ih = analysisManager->CreateH1(id[k], title[k], nbins, vmin, vmax);
     analysisManager->SetH1Activation(ih, false);
   }
+
+  analysisManager->CreateNtuple("energyDeposits", "each step energy deposit");
+  analysisManager->CreateNtupleFColumn("x");
+  analysisManager->CreateNtupleFColumn("y");
+  analysisManager->CreateNtupleFColumn("z");
+  analysisManager->CreateNtupleFColumn("e");
+  analysisManager->FinishNtuple();
 }
