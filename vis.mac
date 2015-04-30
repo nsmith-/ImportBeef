@@ -8,7 +8,7 @@
 /run/verbose 2
 #
 /testem/det/setNbOfAbsor  1
-/testem/det/setAbsor 1 Water  10 cm
+/testem/det/setAbsor 1 G4_MUSCLE_SKELETAL_ICRP 10 cm
 /testem/det/setSizeYZ 10 cm
 #
 /testem/phys/addPhysics  local	# em physics

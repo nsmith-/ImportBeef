@@ -6,7 +6,7 @@
 /run/verbose 2
 #
 /testem/det/setNbOfAbsor  1
-/testem/det/setAbsor 1 G4_WATER 10 cm
+/testem/det/setAbsor 1 G4_MUSCLE_SKELETAL_ICRP 10 cm
 /testem/det/setSizeYZ 10 cm
 #
 /testem/phys/addPhysics  local	# em physics
@@ -18,7 +18,7 @@
 /gun/particle e-
 /gun/energy 10 MeV
 #
-/analysis/setFileName water
+/analysis/setFileName meat
 /analysis/h1/set 1 100 0.  100. mm  # "Edep (MeV/mm) along absorber",
                                     # "total Energy deposited in absorber",
 /analysis/h1/set 3 100 0.  24. mm   # "true track length of the primary particle",
