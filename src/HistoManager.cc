@@ -66,7 +66,7 @@ void HistoManager::Book()
 
   // Define histograms start values
   const G4int kMaxHisto = 10;
-  const G4String id[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+  const G4String id[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
   
   const G4String title[] = 
                 { "dummy",                                       //0
@@ -78,7 +78,8 @@ void HistoManager::Book()
                   "true track length of charged secondaries",    //6
                   "true step size of charged secondaries",       //7
                   "Edep (MeV.cm2/g) along x/r0",                 //8
-                  "Edep (MeV/mm) perp. to beam"               //9
+                  "Edep (MeV/mm) perp. to beam",                 //9
+                  "Edep (MeV/mm) along beam scan direction"      //10
                  };
 
   // Default values (to be reset via /analysis/h1/set command)               

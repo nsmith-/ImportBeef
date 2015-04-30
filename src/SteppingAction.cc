@@ -92,6 +92,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
    G4double xnorm = xfrontNorm + (x - xfront)/csdaRange;
    analysisManager->FillH1(8, xnorm, edep/(csdaRange*density));
    analysisManager->FillH1(9, r, edep);
+   analysisManager->FillH1(10, point.y(), edep);
  }
    
  //step size of primary particle or charged secondaries
