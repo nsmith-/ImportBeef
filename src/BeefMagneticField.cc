@@ -29,6 +29,9 @@
 /// \brief Implementation of the BeefMagneticField class
 
 #include "BeefMagneticField.hh"
+#include "G4Event.hh"
+#include "G4RunManager.hh"
+#include "G4Run.hh"
 
 #include "G4GenericMessenger.hh"
 #include "G4SystemOfUnits.hh"
@@ -52,9 +55,18 @@ BeefMagneticField::~BeefMagneticField()
 
 void BeefMagneticField::GetFieldValue(const G4double [4],double *bField) const
 {
+
+    const G4Run* run  = G4RunManager::GetRunManager()->GetCurrentRun();
+    G4int numEvents = run->GetNumberOfEventToBeProcessed();
+
+    G4int eID = 0;
+    const G4Event* evt = G4RunManager::GetRunManager()->GetCurrentEvent();
+    if(evt) eID = evt->GetEventID();
+   
+    G4float fieldIncrement = 2*fBz/numEvents;
     bField[0] = 0.;
     bField[1] = 0;
-    bField[2] = fBz;
+    bField[2] = fBz - fieldIncrement*eID;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
