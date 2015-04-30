@@ -33,6 +33,8 @@
 /analysis/h1/set 9 100 0.  100. mm  # "Edep (MeV/mm) perp. to beam",
 /analysis/h1/set 10 100 -50.  50. mm  # "Edep (MeV/mm) along beam scan direction"
 #
+/analysis/h2/set 0 100 0 100 mm none 100 -50 50 mm none # ??
+#
 /run/printProgress 10000
 #
 /run/beamOn 100000

@@ -192,6 +192,12 @@ void RunAction::EndOfRunAction(const G4Run* run)
     binWidth = analysisManager->GetH1Width(ih);
     fac = (1./(nbofEvents*binWidth))*(mm/MeV);
     analysisManager->ScaleH1(ih,fac);
+
+    ih = 0;
+    G4double binWidthX = analysisManager->GetH2XWidth(ih);
+    G4double binWidthY = analysisManager->GetH2YWidth(ih);
+    fac = (1./(nbofEvents*binWidthX*binWidthY))*(mm*mm/MeV);
+    analysisManager->ScaleH2(ih,fac);
   }
 
   // reset default formats
