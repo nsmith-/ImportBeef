@@ -1,0 +1,48 @@
+#
+# Macro file for the initialization phase of "TestEm6.cc"
+#
+# Sets some default verbose
+# and initializes the graphic.
+#
+/control/verbose 2
+/run/verbose 2
+#
+/testem/det/setNbOfAbsor  5
+/testem/det/setAbsor 1 G4_AIR  10 cm
+/testem/det/setAbsor 2 G4_Ta  0.12 cm
+/testem/det/setAbsor 3 G4_Al  1.25 cm
+/testem/det/setAbsor 4 G4_AIR  10 cm
+/testem/det/setAbsor 5 G4_MUSCLE_SKELETAL_ICRP 10 cm
+/testem/det/setSizeYZ 10 cm
+#
+/testem/phys/addPhysics  local	# em physics
+#
+/run/initialize
+#
+/testem/phys/setCuts 100 um
+#
+/gun/particle e-
+/gun/energy 7.5 MeV
+#
+#/globalField/verbose 1
+#/globalField/setValue 0 2 0 tesla
+/Beef/field/value .1 tesla
+#
+/analysis/setFileName meat-xrays
+/analysis/h1/set 1 100 0.  100. mm  # "Edep (MeV/mm) along absorber",
+                                    # "total Energy deposited in absorber",
+/analysis/h1/set 3 100 0.  24. mm   # "true track length of the primary particle",
+/analysis/h1/set 4 100 0.  2.  mm   # "true step size of the primary particle",
+/analysis/h1/set 5 100 0.  20. mm   # "projected range of the primary particle",
+/analysis/h1/set 6 100 0.  24. mm	  # "true track length of charged secondaries",
+                                    # "true step size of charged secondaries",
+                                    # "Edep (MeV.cm2/g) along x/r0",
+/analysis/h1/set 9 100 0.  100. mm  # "Edep (MeV/mm) perp. to beam",
+/analysis/h1/set 10 100 -50.  50. mm  # "Edep (MeV/mm) along beam scan direction"
+#
+/analysis/h2/set 0 100 0 100 mm none 100 -50 50 mm none # ??
+#
+/run/printProgress 10000
+#
+/run/beamOn 1000000
+
