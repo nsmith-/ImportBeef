@@ -93,6 +93,11 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction * Det)
   unitPrm->SetParameterCandidates(unitList);
   fAbsorCmd->SetParameter(unitPrm);
   //
+  // Not working, come back to this later
+  //G4UIparameter* fieldPrm = new G4UIparameter("bfield",'i',false);
+  //fieldPrm->SetGuidance("Has B-field");
+  //fAbsorCmd->SetParameter(fieldPrm);
+  //
   fAbsorCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
   fAbsorCmd->SetToBeBroadcasted(false);
   
@@ -145,12 +150,18 @@ void DetectorMessenger::SetNewValue(G4UIcommand* command,G4String newValue)
    
   if (command == fAbsorCmd)
    {
-     G4int num; G4double tick;
+     G4int num, field; 
+     G4double tick;
      G4String unt, mat;
      std::istringstream is(newValue);
      is >> num >> mat >> tick >> unt;
      G4String material=mat;
      tick *= G4UIcommand::ValueOf(unt);
+     G4int bfieldMaterial = 1;
+     if (num == bfieldMaterial) {
+       std::cout << "Material " << mat << " has a Bfield " << std::endl;
+       fDetector->MaterialHasBField(num);
+     }
      fDetector->SetAbsorMaterial (num,material);
      fDetector->SetAbsorThickness(num,tick);
    }

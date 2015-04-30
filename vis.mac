@@ -7,8 +7,9 @@
 /control/verbose 2
 /run/verbose 2
 #
-/testem/det/setNbOfAbsor  1
-/testem/det/setAbsor 1 Water  10 cm
+/testem/det/setNbOfAbsor  2
+/testem/det/setAbsor 1 G4_AIR  10 cm
+/testem/det/setAbsor 2 Water  10 cm
 /testem/det/setSizeYZ 10 cm
 #
 /testem/phys/addPhysics  local	# em physics
@@ -19,6 +20,10 @@
 #
 /gun/particle e-
 /gun/energy 10 MeV
+#
+#/globalField/verbose 1
+#/globalField/setValue 0 2 0 tesla
+/Beef/field/value .1 tesla
 # Use this open statement to create an OpenGL view:
 /vis/open OGL
 # Disable auto refresh and quieten vis messages whilst scene and

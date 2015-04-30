@@ -32,11 +32,13 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #ifndef DetectorConstruction_h
-#define DetectorConstruction_h 1
+#define DetectorConstruction_h
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
+#include "G4FieldManager.hh"
 #include "G4Cache.hh"
+#include <vector>
 
 class G4Box;
 class G4LogicalVolume;
@@ -44,6 +46,8 @@ class G4VPhysicalVolume;
 class G4Material;
 class G4UniformMagField;
 class DetectorMessenger;
+class BeefMagneticField;
+
 
 const G4int MaxAbsor = 10;                        // 0 + 9
 
@@ -60,12 +64,14 @@ public:
 
 public:
   
+  //Stores values of materials which should have B fields in them
   void SetNbOfAbsor     (G4int);      
   void SetAbsorMaterial (G4int,const G4String&);     
   void SetAbsorThickness(G4int,G4double);
                 
   void SetAbsorSizeYZ   (G4double);          
   void SetNbOfDivisions (G4int,G4int);
+  void MaterialHasBField     (G4int);      
     
   //void SetMagField      (G4double);
      
@@ -88,7 +94,11 @@ public:
   void PrintParameters();
    
 private:
-
+    
+  std::vector<G4int> fHasField;
+  static G4ThreadLocal BeefMagneticField* fMagneticField;
+  static G4ThreadLocal G4FieldManager* fFieldMgr;
+ 
   G4int              fNbOfAbsor;
   G4Material*        fAbsorMaterial [MaxAbsor];
   G4double           fAbsorThickness[MaxAbsor];

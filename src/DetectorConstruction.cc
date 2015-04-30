@@ -41,6 +41,7 @@
 #include "G4PVPlacement.hh"
 #include "G4PVReplica.hh"
 #include "G4UniformMagField.hh"
+#include "BeefMagneticField.hh"
 
 #include "G4GeometryManager.hh"
 #include "G4PhysicalVolumeStore.hh"
@@ -57,7 +58,9 @@
 #include <iomanip>
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
+G4ThreadLocal BeefMagneticField* DetectorConstruction::fMagneticField = 0;
+G4ThreadLocal G4FieldManager* DetectorConstruction::fFieldMgr = 0;
+ 
 DetectorConstruction::DetectorConstruction()
 :G4VUserDetectorConstruction(),fDefaultMaterial(0),fPhysiWorld(0),
  fDetectorMessenger(0)
@@ -228,6 +231,18 @@ G4VPhysicalVolume* DetectorConstruction::ConstructVolumes()
                       kXAxis,              //axis of replication
                       fNbOfDivisions[k],   //number of replica
                       LayerThickness);     //witdth of replica    
+    if (std::find(fHasField.begin(), fHasField.end(), k)!=fHasField.end()) {
+      fMagneticField = new BeefMagneticField();
+      fFieldMgr = new G4FieldManager();
+      fFieldMgr->SetDetectorField(fMagneticField);
+      fFieldMgr->CreateChordFinder(fMagneticField);
+      G4bool forceToAllDaughters = true;
+      logicLayer->SetFieldManager(fFieldMgr, forceToAllDaughters);
+
+      // Register the field and its manager for deleting
+      G4AutoDelete::Register(fMagneticField);
+      G4AutoDelete::Register(fFieldMgr);
+    }
   }
 
 
@@ -366,3 +381,7 @@ void DetectorConstruction::ConstructSDandField()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
+void DetectorConstruction::MaterialHasBField(G4int material_num) {
+  fHasField.push_back(material_num);
+  return;
+}
