@@ -102,31 +102,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 void DetectorConstruction::DefineMaterials()
 {
   G4NistManager* man = G4NistManager::Instance();
-  
-  man->FindOrBuildMaterial("G4_Al");
-  man->FindOrBuildMaterial("G4_Si");
-  man->FindOrBuildMaterial("G4_Fe");
-  man->FindOrBuildMaterial("G4_Cu");  
-  man->FindOrBuildMaterial("G4_Ge");
-  man->FindOrBuildMaterial("G4_Mo");
-  man->FindOrBuildMaterial("G4_Ta");
-  man->FindOrBuildMaterial("G4_W");
-  man->FindOrBuildMaterial("G4_Au");
-  man->FindOrBuildMaterial("G4_Pb");  
-  man->FindOrBuildMaterial("G4_PbWO4");
-  man->FindOrBuildMaterial("G4_SODIUM_IODIDE");
-  
-  man->FindOrBuildMaterial("G4_AIR");
-  man->FindOrBuildMaterial("G4_WATER");
-  
-  G4Element* H = man->FindOrBuildElement("H"); 
-  G4Element* O = man->FindOrBuildElement("O");
-  
-  G4Material* H2O = 
-  new G4Material("Water", 1.000*g/cm3, 2);
-  H2O->AddElement(H, 2);
-  H2O->AddElement(O, 1);
-  H2O->GetIonisation()->SetMeanExcitationEnergy(78.0*eV);
 
   G4double density     = universe_mean_density;    //from PhysicalConstants.h
   G4double pressure    = 3.e-18*pascal;

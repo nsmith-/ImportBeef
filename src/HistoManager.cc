@@ -65,8 +65,18 @@ void HistoManager::Book()
       // enable inactivation of histograms
 
   // Define histograms start values
-  const G4int kMaxHisto = 10;
-  const G4String id[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+  const G4int kMaxHisto = 11;
+  const G4String id[] = { "0",
+                          "xdep",
+                          "totaldep",
+                          "primary_length",
+                          "step_size",
+                          "proj_range",
+                          "true_secondary_length",
+                          "true_step",
+                          "8",
+                          "perp_edep",
+                          "ydep" };
   
   const G4String title[] = 
                 { "dummy",                                       //0
@@ -77,8 +87,9 @@ void HistoManager::Book()
                   "projected range of the primary particle",     //5
                   "true track length of charged secondaries",    //6
                   "true step size of charged secondaries",       //7
-                  "Edep (MeV.cm2/g) along x/r0",                 //8
-                  "Edep (MeV/mm) perp. to beam"               //9
+                  "unused!",                                     //8
+                  "Edep (MeV/mm) perp. to beam",                 //9
+                  "Edep (MeV/mm) along beam scan direction"     //10
                  };
 
   // Default values (to be reset via /analysis/h1/set command)               
@@ -92,4 +103,7 @@ void HistoManager::Book()
     G4int ih = analysisManager->CreateH1(id[k], title[k], nbins, vmin, vmax);
     analysisManager->SetH1Activation(ih, false);
   }
+
+  G4int ih = analysisManager->CreateH2("2dprofile", "Edep (MeV/mm^2) along beam scan plane", nbins, vmin, vmax, nbins, vmin, vmax);
+  analysisManager->SetH2Activation(ih, false);
 }

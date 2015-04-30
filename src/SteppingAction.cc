@@ -73,25 +73,17 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
  G4ThreeVector P1 = prePoint ->GetPosition();
  G4ThreeVector P2 = postPoint->GetPosition();
  G4ThreeVector point = P1 + G4UniformRand()*(P2 - P1);
- G4double x = point.x();
- G4double r = sqrt(pow(point.y(),2)+pow(point.z(),2));
- G4double xshifted = x + 0.5*fDetector->GetAbsorSizeX();  
- analysisManager->FillH1(1, xshifted, edep);
 
- //"normalized" histogram
- // 
- Run* run
-   = static_cast<Run*>(
-       G4RunManager::GetRunManager()->GetNonConstCurrentRun());
  G4int iabs = prePoint->GetTouchableHandle()->GetCopyNumber(1);
- G4double csdaRange  = run->GetCsdaRange(iabs);
- if (csdaRange > 0.) { 
-   G4double density = fDetector->GetAbsorMaterial(iabs)->GetDensity();
-   G4double xfront  = fDetector->GetXfront(iabs);
-   G4double xfrontNorm = run->GetXfrontNorm(iabs);
-   G4double xnorm = xfrontNorm + (x - xfront)/csdaRange;
-   analysisManager->FillH1(8, xnorm, edep/(csdaRange*density));
+ // Record only last absorber information
+ if ( iabs == fDetector->GetNbOfAbsor() ) { 
+   G4double xshifted = point.x() - fDetector->GetXfront(iabs);  
+   G4double r = sqrt(pow(point.y(),2)+pow(point.z(),2));
+   analysisManager->FillH1(1, xshifted, edep);
    analysisManager->FillH1(9, r, edep);
+   analysisManager->FillH1(10, point.y(), edep);
+
+   analysisManager->FillH2(0, xshifted, point.y(), edep);
  }
    
  //step size of primary particle or charged secondaries
