@@ -9,7 +9,7 @@
 #
 /testem/det/setNbOfAbsor  2
 /testem/det/setAbsor 1 G4_AIR  10 cm
-/testem/det/setAbsor 2 Water  10 cm
+/testem/det/setAbsor 2 G4_MUSCLE_SKELETAL_ICRP  10 cm
 /testem/det/setSizeYZ 10 cm
 #
 /testem/phys/addPhysics  local	# em physics

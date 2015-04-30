@@ -40,7 +40,7 @@ target_link_libraries(runGeant ${Geant4_LIBRARIES})
 # relies on these scripts being in the current working directory.
 #
 set(ImportBeef_SCRIPTS
-    vis.mac water.mac
+    vis.mac water.mac meat.mac
   )
   
 foreach(_script ${ImportBeef_SCRIPTS})
