@@ -65,7 +65,7 @@ void HistoManager::Book()
       // enable inactivation of histograms
 
   // Define histograms start values
-  const G4int kMaxHisto = 10;
+  const G4int kMaxHisto = 11;
   const G4String id[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
   
   const G4String title[] = 
