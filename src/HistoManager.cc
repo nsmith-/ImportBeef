@@ -70,7 +70,7 @@ void HistoManager::Book()
                           "xdep",
                           "totaldep",
                           "primary_length",
-                          "step_size",
+                          "deposit_along_track",
                           "proj_range",
                           "true_secondary_length",
                           "true_step",
@@ -84,7 +84,7 @@ void HistoManager::Book()
                   "Edep (MeV/mm) along absorber",                //1
                   "total Energy deposited in absorber",          //2
                   "true track length of the primary particle",   //3
-                  "true step size of the primary particle",      //4
+                  "Energy (MeV/mm) along track",                 //4
                   "projected range of the primary particle",     //5
                   "true track length of charged secondaries",    //6
                   "true step size of charged secondaries",       //7

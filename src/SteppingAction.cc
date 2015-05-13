@@ -96,7 +96,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
  //step size of primary particle or charged secondaries
  //
  G4double steplen = step->GetStepLength();
- if      (track->GetTrackID() == 1) analysisManager->FillH1(4, steplen);
+ if      (track->GetTrackID() == 1) analysisManager->FillH1(4, track->GetTrackLength(), edep);
  else if (track->GetDefinition()->GetPDGCharge() != 0.)
                                     analysisManager->FillH1(7, steplen); 
 }
