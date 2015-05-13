@@ -32,7 +32,9 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(runGeant runGeant.cc ${sources} ${headers})
+add_executable(runPhotoNuc runPhotoNuc.cc ${sources} ${headers})
 target_link_libraries(runGeant ${Geant4_LIBRARIES})
+target_link_libraries(runPhotoNuc ${Geant4_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
