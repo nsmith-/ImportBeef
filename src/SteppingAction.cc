@@ -57,6 +57,7 @@ SteppingAction::~SteppingAction()
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
  G4double edep = step->GetTotalEnergyDeposit();
+ const G4Track* track = step->GetTrack();
  if (edep <= 0.) return;
  
  //total energy deposit in absorber
@@ -84,12 +85,17 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
    analysisManager->FillH1(10, point.y(), edep);
 
    analysisManager->FillH2(0, xshifted, point.y(), edep);
+ } else if ( iabs == fDetector->GetNbOfAbsor()-1 ) {
+   G4int inextabs = postPoint->GetTouchableHandle()->GetCopyNumber(1);
+   if ( inextabs > iabs ) {
+     analysisManager->FillH1(11, track->GetTotalEnergy());
+   }
  }
+
    
  //step size of primary particle or charged secondaries
  //
  G4double steplen = step->GetStepLength();
- const G4Track* track = step->GetTrack();
  if      (track->GetTrackID() == 1) analysisManager->FillH1(4, steplen);
  else if (track->GetDefinition()->GetPDGCharge() != 0.)
                                     analysisManager->FillH1(7, steplen); 

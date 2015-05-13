@@ -39,6 +39,7 @@
                                     # "Edep (MeV.cm2/g) along x/r0",
 /analysis/h1/set 9 100 0.  100. mm  # "Edep (MeV/mm) perp. to beam",
 /analysis/h1/set 10 100 -50.  50. mm  # "Edep (MeV/mm) along beam scan direction"
+/analysis/h1/set 11 75 0.  7.5 MeV
 #
 /analysis/h2/set 0 100 0 100 mm none 100 -50 50 mm none # ??
 #

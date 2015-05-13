@@ -65,7 +65,7 @@ void HistoManager::Book()
       // enable inactivation of histograms
 
   // Define histograms start values
-  const G4int kMaxHisto = 11;
+  const G4int kMaxHisto = 12;
   const G4String id[] = { "0",
                           "xdep",
                           "totaldep",
@@ -76,7 +76,8 @@ void HistoManager::Book()
                           "true_step",
                           "8",
                           "perp_edep",
-                          "ydep" };
+                          "ydep",
+                          "E_at_surface"};
   
   const G4String title[] = 
                 { "dummy",                                       //0
@@ -89,7 +90,8 @@ void HistoManager::Book()
                   "true step size of charged secondaries",       //7
                   "unused!",                                     //8
                   "Edep (MeV/mm) perp. to beam",                 //9
-                  "Edep (MeV/mm) along beam scan direction"     //10
+                  "Edep (MeV/mm) along beam scan direction",     //10
+                  "Energy of particle at surface of absorber"    //11
                  };
 
   // Default values (to be reset via /analysis/h1/set command)               
